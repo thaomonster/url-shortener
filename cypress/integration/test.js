@@ -13,6 +13,12 @@ describe('App', () => {
       .get('input')
       .should('have.length', 2)
   })
+  
+  it('should have a form section with a shorten please button', () => {
+    cy.get('form')
+      .get('button')
+      .should('have.text', 'Shorten Please!')
+  })
 
 
 
