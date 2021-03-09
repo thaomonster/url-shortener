@@ -43,6 +43,14 @@ describe('UrlForm', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'mockData.json'})
 
+    cy.request('POST', 'http://localhost:3001/api/v1/urls', {
+      title: 'Dinosaur', 
+      long_url: 'https://unsplash.com/photos/hYKG311mff8',
+      id: 4,
+      short_url: 'http://localhost:3001/useshorturl/6'
+      }
+    ).as('post')
+
     cy.visit('http://localhost:3000/')
   })
 
