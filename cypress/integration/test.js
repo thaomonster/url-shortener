@@ -43,10 +43,16 @@ describe('UrlForm', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'mockData.json'})
 
-
     cy.visit('http://localhost:3000/')
   })
 
- 
+  it.only('should be able to test user integration', () => {
+    cy.get('[placeholder="Title..."]')
+      .type('Awkward Turtle')
+      .get('[placeholder="URL to Shorten..."]')
+      .type('https://unsplash.com/photos/Bv8ew2s-f4A')
+      .get('button')
+      .click()
+  })
 
 })
