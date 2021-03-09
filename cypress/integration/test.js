@@ -55,13 +55,13 @@ describe('App', () => {
 
 describe('UrlForm', () => {
   beforeEach(() => {
-    cy.request('POST', 'http://localhost:3001/api/v1/urls', {
-      title: 'Dinosaur', 
-      long_url: 'https://unsplash.com/photos/hYKG311mff8',
-      id: 4,
-      short_url: 'http://localhost:3001/useshorturl/6'
-      }
-    ).as('post')
+    // cy.request('POST', 'http://localhost:3001/api/v1/urls', {
+    //   title: 'Dinosaur', 
+    //   long_url: 'https://unsplash.com/photos/hYKG311mff8',
+    //   id: 4,
+    //   short_url: 'http://localhost:3001/useshorturl/6'
+    //   }
+    // ).as('post')
 
     cy.visit('http://localhost:3000/')
   })
@@ -73,11 +73,21 @@ describe('UrlForm', () => {
       .type('https://unsplash.com/photos/Bv8ew2s-f4A')
       .get('button')
       .click()
-      .get('section > :nth-child(3) > h3')
+      .get('section > :nth-child(2) > h3')
       .should('have.text', 'Awkward Turtle')
   })
 
   it('should be able to post a new url', () => {
+    cy.request('POST', 'http://localhost:3001/api/v1/urls', {
+      title: 'Dinosaur', 
+      long_url: 'https://unsplash.com/photos/hYKG311mff8',
+      id: 4,
+      short_url: 'http://localhost:3001/useshorturl/6'
+      }
+    ).as('post');
+
+    cy.visit('http://localhost:3000/');
+
     cy.get('@post').should('have.property', 'status', 201)
     cy.get('@post').should((response) => {
       expect(response.body).to.have.property('title', 'Dinosaur')
