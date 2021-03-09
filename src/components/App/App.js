@@ -22,8 +22,9 @@ export class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
-  addNewUrl = () => {
-    postNewUrls()
+  addNewUrl = (newUrl) => {
+    postNewUrls(newUrl)
+      .then(() => this.getAllUrls())
   }
 
   render() {
@@ -31,7 +32,7 @@ export class App extends Component {
       <main className="App">
         <header>
           <h1>URL Shortener</h1>
-          <UrlForm />
+          <UrlForm addNewUrl={this.addNewUrl}/>
         </header>
 
         <UrlContainer urls={this.state.urls}/>
