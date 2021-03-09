@@ -54,7 +54,7 @@ describe('UrlForm', () => {
     cy.visit('http://localhost:3000/')
   })
 
-  it.only('should be able to test user integration', () => {
+  it('should be able to test user integration', () => {
     cy.get('[placeholder="Title..."]')
       .type('Awkward Turtle')
       .get('[placeholder="URL to Shorten..."]')
@@ -63,4 +63,12 @@ describe('UrlForm', () => {
       .click()
   })
 
+  it('should be able to post a new url', () => {
+    cy.get('@post').should('have.property', 'status', 201)
+    cy.get('@post').should((response) => {
+      expect(response.body).to.have.property('title', 'Dinosaur')
+      expect(response.body).to.have.property('long_url', 'https://unsplash.com/photos/hYKG311mff8')
+      expect(response.body).to.have.property('short_url', 'http://localhost:3001/useshorturl/9')
+    })
+  });
 })
