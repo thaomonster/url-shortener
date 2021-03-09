@@ -73,7 +73,7 @@ describe('UrlForm', () => {
       .type('https://unsplash.com/photos/Bv8ew2s-f4A')
       .get('button')
       .click()
-      .get('section > :nth-child(4) > h3')
+      .get('section > :nth-child(3) > h3')
       .should('have.text', 'Awkward Turtle')
   })
 
