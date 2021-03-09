@@ -41,8 +41,6 @@ describe('App', () => {
 
 describe('UrlForm', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'mockData.json'})
-
     cy.request('POST', 'http://localhost:3001/api/v1/urls', {
       title: 'Dinosaur', 
       long_url: 'https://unsplash.com/photos/hYKG311mff8',
@@ -61,6 +59,8 @@ describe('UrlForm', () => {
       .type('https://unsplash.com/photos/Bv8ew2s-f4A')
       .get('button')
       .click()
+      .get('section > :nth-child(4) > h3')
+      .should('have.text', 'Awkward Turtle')
   })
 
   it('should be able to post a new url', () => {
@@ -68,7 +68,6 @@ describe('UrlForm', () => {
     cy.get('@post').should((response) => {
       expect(response.body).to.have.property('title', 'Dinosaur')
       expect(response.body).to.have.property('long_url', 'https://unsplash.com/photos/hYKG311mff8')
-      expect(response.body).to.have.property('short_url', 'http://localhost:3001/useshorturl/9')
     })
   });
 })
