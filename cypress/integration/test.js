@@ -25,16 +25,17 @@ describe('App', () => {
   })
 
   it('should on each card have a title', () => {
-    cy.get(':nth-child(1) > h3')
-      .should('have.text', 'Awesome photo')
-    
-    cy.get(':nth-child(2) > h3')
-    .should('have.text', 'Flower')
-
-    cy.get(':nth-child(3) > h3')
-    .should('have.text', 'Harry Potter Picture')
+    cy.get(':nth-child(1) > h3').should('have.text', 'Test 1')
   })
 
-  
+  it('should on each card have a shorten url link', () => {
+    cy.get(':nth-child(2) > a')
+      .should('have.text', 'http://localhost:3001/useshorturl/2')
+  })
+
+  it('should on each card have a long url', () => {
+    cy.get(':nth-child(3) > p')
+      .should('have.text', 'https://unsplash.com/photos/WE7YfTGpXlg')
+  })
 
 })
