@@ -1,7 +1,7 @@
 describe('App', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'mockData.json'})
-    cy.visit('http://localhost:3000/');
+    cy.visit('http://localhost:3000/')
   })
 
   it('should have a title', () => {
@@ -37,5 +37,16 @@ describe('App', () => {
     cy.get(':nth-child(3) > p')
       .should('have.text', 'https://unsplash.com/photos/WE7YfTGpXlg')
   })
+})
+
+describe('UrlForm', () => {
+  beforeEach(() => {
+    cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'mockData.json'})
+
+
+    cy.visit('http://localhost:3000/')
+  })
+
+ 
 
 })
