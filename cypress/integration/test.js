@@ -24,4 +24,17 @@ describe('App', () => {
     cy.get('.url').should('have.length', 3)
   })
 
+  it('should on each card have a title', () => {
+    cy.get(':nth-child(1) > h3')
+      .should('have.text', 'Awesome photo')
+    
+    cy.get(':nth-child(2) > h3')
+    .should('have.text', 'Flower')
+
+    cy.get(':nth-child(3) > h3')
+    .should('have.text', 'Harry Potter Picture')
+  })
+
+  
+
 })
