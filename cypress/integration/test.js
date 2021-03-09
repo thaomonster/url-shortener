@@ -8,7 +8,12 @@ describe('App', () => {
     cy.get('h1').should('have.text', 'URL Shortener')
   })
 
- 
+  it('should have a form section with two inputs', () => {
+    cy.get('form')
+      .get('input')
+      .should('have.length', 2)
+  })
+
 
 
 })
