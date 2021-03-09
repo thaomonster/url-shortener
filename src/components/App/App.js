@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { getUrls, postNewUrls } from '../../apiCalls';
+import { getUrls, postNewUrl } from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
@@ -23,7 +23,7 @@ export class App extends Component {
   }
 
   addNewUrl = (newUrl) => {
-    postNewUrls(newUrl)
+    postNewUrl(newUrl)
       .then(() => this.getAllUrls())
   }
 
